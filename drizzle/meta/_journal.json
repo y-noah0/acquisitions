@@ -8,6 +8,13 @@
       "when": 1760387180331,
       "tag": "0000_real_wrecking_crew",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1760428209101,
+      "tag": "0001_furry_daredevil",
+      "breakpoints": true
     }
   ]
 }
