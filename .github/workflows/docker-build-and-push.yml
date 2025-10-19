@@ -30,7 +30,7 @@ jobs:
                       type=ref,event=branch
                       type=sha
                       type=raw,value=latest
-                      type=raw,value="prod-{{date '20060102_150405'}}"
+                      type=raw,value=prod-{{date 20060102_150405}}
 
             - name: Build and push
               uses: docker/build-push-action@v5
