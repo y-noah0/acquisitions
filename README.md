@@ -40,50 +40,55 @@ chmod +x docker.bash
 ### Using Docker Compose Directly
 
 1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/y-noah0/acquisitions.git
-   cd acquisitions
-   ```
+
+    ```bash
+    git clone https://github.com/y-noah0/acquisitions.git
+    cd acquisitions
+    ```
 
 2. **Start the development environment:**
-   ```bash
-   docker-compose -f docker-compose.dev.yml up --build
-   ```
 
-   This will:
-   - Start Neon Local (local PostgreSQL proxy with Neon API)
-   - Build and start the application
-   - Run database migrations automatically
-   - The app will be available at http://localhost:4000
+    ```bash
+    docker-compose -f docker-compose.dev.yml up --build
+    ```
+
+    This will:
+    - Start Neon Local (local PostgreSQL proxy with Neon API)
+    - Build and start the application
+    - Run database migrations automatically
+    - The app will be available at http://localhost:4000
 
 3. **Access Neon Local:**
-   - PostgreSQL: `postgres://user:password@localhost:5432/neondb`
-   - Neon API: http://localhost:4444
+    - PostgreSQL: `postgres://user:password@localhost:5432/neondb`
+    - Neon API: http://localhost:4444
 
 ### Local Development (Without Docker)
 
 1. **Install dependencies:**
-   ```bash
-   pnpm install
-   ```
+
+    ```bash
+    pnpm install
+    ```
 
 2. **Set up Neon Local:**
-   ```bash
-   docker run --rm -p 4444:4444 -p 5432:5432 ghcr.io/neondatabase/neon-local
-   ```
+
+    ```bash
+    docker run --rm -p 4444:4444 -p 5432:5432 ghcr.io/neondatabase/neon-local
+    ```
 
 3. **Configure environment:**
    Copy `.env.development` and ensure DATABASE_URL points to Neon Local.
 
 4. **Run migrations:**
-   ```bash
-   pnpm run db:migrate
-   ```
+
+    ```bash
+    pnpm run db:migrate
+    ```
 
 5. **Start the application:**
-   ```bash
-   pnpm run dev
-   ```
+    ```bash
+    pnpm run dev
+    ```
 
 ## Production Deployment
 
@@ -109,20 +114,21 @@ chmod +x docker.bash
 ### Using Docker Compose
 
 1. **Configure production environment:**
-   - Copy `.env.production` to your production server
-   - Set the `DATABASE_URL` to your Neon Cloud database URL
-   - Example: `DATABASE_URL=postgres://user:password@ep-xxx-xxx.us-east-1.aws.neon.tech/neondb?sslmode=require`
+    - Copy `.env.production` to your production server
+    - Set the `DATABASE_URL` to your Neon Cloud database URL
+    - Example: `DATABASE_URL=postgres://user:password@ep-xxx-xxx.us-east-1.aws.neon.tech/neondb?sslmode=require`
 
 2. **Deploy:**
-   ```bash
-   docker-compose -f docker-compose.prod.yml up --build -d
-   ```
 
-   This will:
-   - Build the application
-   - Run database migrations
-   - Start the app in production mode
-   - The app will be available on port 4000
+    ```bash
+    docker-compose -f docker-compose.prod.yml up --build -d
+    ```
+
+    This will:
+    - Build the application
+    - Run database migrations
+    - Start the app in production mode
+    - The app will be available on port 4000
 
 ### Environment Variables
 
@@ -160,6 +166,7 @@ The application automatically switches between environments based on the `DATABA
 ## Docker
 
 ### Using Docker Script
+
 - **Development:** `./docker.bash start dev`
 - **Production:** `./docker.bash start prod`
 - **Build:** `./docker.bash build <dev|prod>`
@@ -169,6 +176,7 @@ The application automatically switches between environments based on the `DATABA
 - **Status:** `./docker.bash status`
 
 ### Using Docker Compose Directly
+
 - **Development:** `docker-compose -f docker-compose.dev.yml up --build`
 - **Production:** `docker-compose -f docker-compose.prod.yml up --build -d`
 
