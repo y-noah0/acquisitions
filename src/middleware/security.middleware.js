@@ -36,6 +36,13 @@ export const securityMiddleware = async (req, res, next) => {
             })
         );
         const descision = await client.protect(req);
+        logger.info('Arcjet decision', {
+            isDenied: descision.isDenied(),
+            reason: descision.reason?.toString(),
+            ip: req.ip,
+            userAgent: req.get('User-Agent'),
+            path: req.path,
+        });
         if (descision.isDenied && descision.reason.isBot()) {
             logger.warn('Blocked bot request', {
                 ip: req.ip,
@@ -68,7 +75,7 @@ export const securityMiddleware = async (req, res, next) => {
             });
             return res.status(403).json({
                 error: 'Forbidden',
-                message: 'Exceeded request limit ',
+                message,
             });
         }
         next();
