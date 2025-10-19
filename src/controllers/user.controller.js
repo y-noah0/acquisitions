@@ -73,20 +73,16 @@ export const userController = {
 
             // Check if user is trying to update themselves or is admin
             if (req.user.id !== userId && req.user.role !== 'admin') {
-                return res
-                    .status(403)
-                    .json({
-                        error: 'Forbidden: You can only update your own profile',
-                    });
+                return res.status(403).json({
+                    error: 'Forbidden: You can only update your own profile',
+                });
             }
 
             // Only admins can change role
             if (updates.role && req.user.role !== 'admin') {
-                return res
-                    .status(403)
-                    .json({
-                        error: 'Forbidden: Only admins can change user roles',
-                    });
+                return res.status(403).json({
+                    error: 'Forbidden: Only admins can change user roles',
+                });
             }
 
             const updatedUser = await userService.updateUser(userId, updates);
@@ -123,11 +119,9 @@ export const userController = {
 
             // Check if user is trying to delete themselves or is admin
             if (req.user.id !== userId && req.user.role !== 'admin') {
-                return res
-                    .status(403)
-                    .json({
-                        error: 'Forbidden: You can only delete your own account',
-                    });
+                return res.status(403).json({
+                    error: 'Forbidden: You can only delete your own account',
+                });
             }
 
             const result = await userService.deleteUser(userId);
